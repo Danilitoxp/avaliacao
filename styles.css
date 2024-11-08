@@ -14,17 +14,40 @@ body {
 }
 
 .ranking-container {
-  margin-top: 60px;
   width: 100%;
-  max-width: 600px;
+  max-width: 800px;
   text-align: center;
   background-color: #ffffff;
   padding: 30px;
   border-radius: 15px;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
   overflow-y: auto;
-  max-height: 80vh;
+  max-height: 90vh;
 }
+
+/* Personaliza a barra de rolagem */
+::-webkit-scrollbar {
+  width: 12px; /* Largura da barra de rolagem */
+  height: 12px; /* Altura da barra de rolagem horizontal */
+}
+
+/* Personaliza o trilho da barra de rolagem */
+::-webkit-scrollbar-track {
+  background-color: #f1f1f1; /* Cor do trilho */
+  border-radius: 10px;
+}
+
+/* Personaliza o polegar (parte que o usuário clica) da barra de rolagem */
+::-webkit-scrollbar-thumb {
+  background-color: #007bff; /* Cor azul do polegar */
+  border-radius: 10px;
+}
+
+/* Cor do polegar quando estiver sendo arrastado */
+::-webkit-scrollbar-thumb:hover {
+  background-color: #0056b3; /* Cor do polegar ao passar o mouse sobre ele */
+}
+
 
 h1 {
   font-size: 28px;
