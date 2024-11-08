@@ -39,39 +39,46 @@ const correctPassword = "admin123";
 
 // Exibe o modal para inserir a senha
 document.addEventListener('keydown', (event) => {
-  if ((event.key === 'A' || event.key === 'a') && !document.body.classList.contains('admin-mode')) {
-    modal.style.display = 'flex';
+  // Se pressionar 'A', alterna a visibilidade do modo admin
+  if (event.key === 'A' || event.key === 'a') {
+    if (document.body.classList.contains('admin-mode')) {
+      document.body.classList.remove('admin-mode');
+      gerarRanking(); // Regenera o ranking sem os botões
+    } else {
+      modal.style.display = 'flex';
+    }
   }
 });
 
-// Função para verificar a senha
-function verificarSenha() {
+// Verifica a senha inserida quando o botão de login é clicado
+passwordSubmit.addEventListener('click', () => {
+  loginAdmin();
+});
+
+// Verifica a senha ao pressionar 'Enter' no campo de senha
+passwordInput.addEventListener('keydown', (event) => {
+  if (event.key === 'Enter') {
+    loginAdmin();
+  }
+});
+
+// Função para validar o login
+function loginAdmin() {
   const enteredPassword = passwordInput.value;
-  
+
   if (enteredPassword === correctPassword) {
     document.body.classList.add('admin-mode');
     modal.style.display = 'none'; // Fecha o modal
+    gerarRanking(); // Regenera o ranking com os botões visíveis
   } else {
     alert("Senha incorreta!");
   }
 }
 
-// Verifica a senha ao clicar no botão "Submit"
-passwordSubmit.addEventListener('click', verificarSenha);
-
-// Verifica a senha ao pressionar a tecla "Enter"
-passwordInput.addEventListener('keydown', (event) => {
-  if (event.key === 'Enter') {
-    verificarSenha(); // Chama a função de verificação
-  }
-});
-
-
 // Fecha o modal se o usuário cancelar
 passwordCancel.addEventListener('click', () => {
   modal.style.display = 'none';
 });
-
 
 // Função para carregar os pontos dos vendedores do Firestore
 async function carregarPontosDosVendedores() {
@@ -171,6 +178,7 @@ function gerarRanking() {
     const addButton = document.createElement('button');
     addButton.classList.add('control-button');
     addButton.innerHTML = '<span class="material-icons">add</span>';
+    addButton.style.display = document.body.classList.contains('admin-mode') ? 'inline-block' : 'none'; // Só exibe se admin-mode estiver ativo
     addButton.addEventListener('click', async () => {
       if (document.body.classList.contains('admin-mode')) {
         vendedor.pontos += 1; 
@@ -183,32 +191,28 @@ function gerarRanking() {
     const removeButton = document.createElement('button');
     removeButton.classList.add('control-button');
     removeButton.innerHTML = '<span class="material-icons">remove</span>';
+    removeButton.style.display = document.body.classList.contains('admin-mode') ? 'inline-block' : 'none'; // Só exibe se admin-mode estiver ativo
     removeButton.addEventListener('click', async () => {
-      if (document.body.classList.contains('admin-mode') && vendedor.pontos > 0) {
+      if (document.body.classList.contains('admin-mode')) {
         vendedor.pontos -= 1; 
-        await atualizarPontosFirestore(vendedor.id, -1); 
-        gerarRanking(); 
+        await atualizarPontosFirestore(vendedor.id, -1);
+        gerarRanking();
       }
     });
 
     buttonContainer.appendChild(addButton);
     buttonContainer.appendChild(removeButton);
 
+    // Adiciona os elementos ao item da lista
     listItem.appendChild(positionIcon);
     listItem.appendChild(foto);
     listItem.appendChild(name);
     listItem.appendChild(points);
     listItem.appendChild(buttonContainer);
+
     rankingList.appendChild(listItem);
   });
 }
 
-// Alterna para o modo administrador ao pressionar a tecla "A"
-document.addEventListener('keydown', (event) => {
-  if (event.key === 'A' || event.key === 'a') {
-    document.body.classList.toggle('admin-mode');
-  }
-});
-
-// Carrega os pontos dos vendedores e gera o ranking
-carregarPontosDosVendedores();
+// Carrega os dados dos vendedores ao inicializar a página
+window.onload = carregarPontosDosVendedores;
