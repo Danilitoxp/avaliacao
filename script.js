@@ -25,7 +25,8 @@ const vendedores = [
   { nome: 'Tatiane', pontos: 0, foto: 'Vendedores/Tatiane.jpg', id: 'tatiane' },
   { nome: 'Deives', pontos: 0, foto: 'Vendedores/Deives.jpg', id: 'deives' },
   { nome: 'Gustavo', pontos: 0, foto: 'Vendedores/Gustavo.jpg', id: 'gustavo' },
-  { nome: 'Victor', pontos: 0, foto: 'Vendedores/Victor.jpg', id: 'victor' }
+  { nome: 'Victor', pontos: 0, foto: 'Vendedores/Victor.jpg', id: 'victor' },
+  { nome: 'Joao', pontos: 0, foto: 'Vendedores/Joao.jpg', id: 'joao' }
 ];
 
 // Modal e lógica de senha
