@@ -22,10 +22,10 @@ const vendedores = [
   { nome: 'Valéria', pontos: 0, foto: 'Vendedores/Valeria.jpg', id: 'valeria' },
   { nome: 'Mateus', pontos: 0, foto: 'Vendedores/Mateus.jpg', id: 'mateus' },
   { nome: 'Leandro', pontos: 0, foto: 'Vendedores/Leandro.jpg', id: 'leandro' },
-  { nome: 'Tatiane', pontos: 0, foto: 'Vendedores/tatiane.jpg', id: 'tatiane' },
-  { nome: 'Deives', pontos: 0, foto: 'Vendedores/deives.jpg', id: 'deives' },
-  { nome: 'Gustavo', pontos: 0, foto: 'Vendedores/gustavo.jpg', id: 'gustavo' },
-  { nome: 'Victor', pontos: 0, foto: 'Vendedores/victor.jpg', id: 'victor' }
+  { nome: 'Tatiane', pontos: 0, foto: 'Vendedores/Tatiane.jpg', id: 'tatiane' },
+  { nome: 'Deives', pontos: 0, foto: 'Vendedores/Deives.jpg', id: 'deives' },
+  { nome: 'Gustavo', pontos: 0, foto: 'Vendedores/Gustavo.jpg', id: 'gustavo' },
+  { nome: 'Victor', pontos: 0, foto: 'Vendedores/Victor.jpg', id: 'victor' }
 ];
 
 // Função para carregar os pontos dos vendedores do Firestore
