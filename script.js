@@ -44,8 +44,8 @@ document.addEventListener('keydown', (event) => {
   }
 });
 
-// Verifica a senha inserida
-passwordSubmit.addEventListener('click', () => {
+// Função para verificar a senha
+function verificarSenha() {
   const enteredPassword = passwordInput.value;
   
   if (enteredPassword === correctPassword) {
@@ -54,7 +54,18 @@ passwordSubmit.addEventListener('click', () => {
   } else {
     alert("Senha incorreta!");
   }
+}
+
+// Verifica a senha ao clicar no botão "Submit"
+passwordSubmit.addEventListener('click', verificarSenha);
+
+// Verifica a senha ao pressionar a tecla "Enter"
+passwordInput.addEventListener('keydown', (event) => {
+  if (event.key === 'Enter') {
+    verificarSenha(); // Chama a função de verificação
+  }
 });
+
 
 // Fecha o modal se o usuário cancelar
 passwordCancel.addEventListener('click', () => {
