@@ -28,6 +28,40 @@ const vendedores = [
   { nome: 'Victor', pontos: 0, foto: 'Vendedores/Victor.jpg', id: 'victor' }
 ];
 
+// Modal e lógica de senha
+const modal = document.getElementById('password-modal');
+const passwordInput = document.getElementById('password-input');
+const passwordSubmit = document.getElementById('password-submit');
+const passwordCancel = document.getElementById('password-cancel');
+
+// Senha correta (pode ser alterada conforme necessário)
+const correctPassword = "admin123"; 
+
+// Exibe o modal para inserir a senha
+document.addEventListener('keydown', (event) => {
+  if ((event.key === 'A' || event.key === 'a') && !document.body.classList.contains('admin-mode')) {
+    modal.style.display = 'flex';
+  }
+});
+
+// Verifica a senha inserida
+passwordSubmit.addEventListener('click', () => {
+  const enteredPassword = passwordInput.value;
+  
+  if (enteredPassword === correctPassword) {
+    document.body.classList.add('admin-mode');
+    modal.style.display = 'none'; // Fecha o modal
+  } else {
+    alert("Senha incorreta!");
+  }
+});
+
+// Fecha o modal se o usuário cancelar
+passwordCancel.addEventListener('click', () => {
+  modal.style.display = 'none';
+});
+
+
 // Função para carregar os pontos dos vendedores do Firestore
 async function carregarPontosDosVendedores() {
   for (let i = 0; i < vendedores.length; i++) {
